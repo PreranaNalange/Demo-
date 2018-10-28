@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 Dec, 2017 11:24:57 AM by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.pojo.State" table="state" catalog="mapping">
+        <id name="sid" type="java.lang.Integer">
+            <column name="sid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="country" class="com.pojo.Country" fetch="select">
+            <column name="co_id" />
+        </many-to-one>
+        <property name="sname" type="string">
+            <column name="sname" length="200" />
+        </property>
+        <set name="cities" table="city" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="s_id" />
+            </key>
+            <one-to-many class="com.pojo.City" />
+        </set>
+    </class>
+</hibernate-mapping>
